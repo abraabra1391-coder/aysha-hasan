@@ -1,0 +1,16 @@
+Put your media in this folder, then import it at the top of src/config.js and use it in `assets`.
+Example:
+  import hero from './assets/hero.png';
+  import doorVideo from './assets/opening.mp4';
+  ...
+  assets: { hero, doorVideo, ... }
+
+Sizes:
+  poster.jpg     closed doors, portrait 9:16 (first frame of the door video)
+  opening.mp4    doors opening, portrait 9:16, 4-6 s, under ~6 MB; last frame = hero image
+  hero.png       full invitation artwork, portrait 9:16
+  background.jpg       already added (velvet, flowers in two corners) - bride/groom/venue pages
+  hero-background.jpg  already added (velvet, flower borders top and bottom) - hero page
+  butterfly.png  transparent PNG, ~320 px wide
+  song.mp3       background music (loops), starts on "Open Invitation"
+  couple.jpg     optional photo on the "Celebrate With Us" page
