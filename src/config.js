@@ -5,6 +5,9 @@
 // Your media files live in src/assets. Import each one here, then use it in `assets` below.
 import background from './assets/background.jpg';
 import heroBackground from './assets/hero-background.jpg';
+import groomNameArt from './assets/names/hasan.png';
+import brideNameArt from './assets/names/roomi-aysha.png';
+import monogram from './assets/names/monogram.png';
 
 export const wedding = {
   /* ---------- the couple ---------- */
@@ -32,12 +35,19 @@ export const wedding = {
     timeLabel: 'Nikah at 11:00 AM',
   },
 
+  /* ---------- first page: which events it shows (0 = first in the list below) ---------- */
+  hero: {
+    venueEvent: 1, // Wedding — Karimbalayil Convention Center
+    alsoEvent: 2,  // Reception — shown underneath with its date
+  },
+
   /* ---------- events: each one gets its own venue page, in this order ----------
      time: '' hides the time line. mapsUrl: paste a Google Maps share link,
      or leave '' and the button searches Maps for the place + address. */
   events: [
     {
       title: 'Nikah',
+      showPage: false, // its own venue page is hidden; the hero still shows these details
       date: '2027-01-13T11:00:00+05:30',
       time: '11:00 AM',
       placeLines: ['Misbahul Huda', 'Jumma Masjid'],
@@ -48,7 +58,7 @@ export const wedding = {
       title: 'Wedding',
       date: '2027-01-13T11:00:00+05:30',
       time: '',
-      placeLines: ['Krimbalayil', 'Convention Center'],
+      placeLines: ['Karimbalayil', 'Convention Center'],
       address: 'Vazhampuram, Karakurussi, Mannarkad',
       mapsUrl: '',
     },
@@ -79,7 +89,7 @@ export const wedding = {
     invitationHeading: 'Together With Their Families',
     // {bride} and {groom} are replaced with the names above
     invitationMessage:
-      'With the blessings of Allah and their families, {bride} & {groom} joyfully invite you to celebrate the beginning of their new journey together.',
+      'With the blessings of Allah and their families, {groom} & {bride} joyfully invite you to celebrate the beginning of their new journey together.',
     verse:
       '“And of His signs is that He created for you spouses from among yourselves, that you may find tranquillity in them; and He placed between you affection and mercy.”',
     verseRef: 'Quran 30:21',
@@ -104,6 +114,20 @@ export const wedding = {
     complimentsHint: 'Tap the card',
   },
 
+  /* ---------- send wishes ----------
+     whatsapp: the family number wishes go to, e.g. '+91 98765 43210'.
+     Leave '' and WhatsApp opens so the guest chooses who to send it to. */
+  wishes: {
+    whatsapp: '',
+    label: 'Send Your Wishes',
+    title: 'Duas & Blessings',
+    intro: 'Share a dua or a few words of love for the couple.',
+    quick: ['Barakallahu lakuma 🤲', 'Mabrook! 💐', 'May Allah bless your union with love & mercy'],
+    placeholder: 'Write your wishes here…',
+    button: 'Send on WhatsApp',
+    thanks: 'Jazakallahu khairan for your wishes!',
+  },
+
   /* ---------- contact page (hidden while phones and whatsapp are both empty) ---------- */
   contact: {
     heading: 'Contact Us',
@@ -119,7 +143,12 @@ export const wedding = {
     poster: '',      // closed-door still, portrait 9:16 (first frame of the video)
     doorVideo: '',   // doors-opening video, portrait 9:16, ending on the hero frame
     hero: '',        // full invitation artwork with text baked in, portrait 9:16 (overrides the next line)
-    heroBackground,  // hero backdrop; the invitation text is written on top of it in gold
+    heroBackground,
+    // the couple's names on the first page, lettering taken from the printed card.
+    // Set either to '' to show that name as typed text instead.
+    groomNameArt,
+    brideNameArt,
+    monogram,        // RH monogram from the save-the-date card, shown as the final section ('' hides it)  // hero backdrop; the invitation text is written on top of it in gold
     background,      // backdrop for bride / groom / venue pages + desktop backdrop
     backgroundTone: 'dark', // 'dark' = light text on it, 'light' = dark text on it
     butterfly: '',   // transparent PNG
@@ -135,8 +164,16 @@ export const wedding = {
     doorAnimation: false,
   },
 
+  /* ---------- fonts ----------
+     adobeFontsKit: your Adobe Fonts web-project ID (the xxxxxxx in use.typekit.net/xxxxxxx.css).
+     When set, the couple's names on the first page use Bickham Script Pro 3.
+     Leave '' to use the bundled copperplate (Pinyon Script). */
+  fonts: {
+    adobeFontsKit: '',
+  },
+
   /* ---------- browser tab & link preview ---------- */
   meta: {
-    title: '{bride} & {groom} — Wedding Invitation',
+    title: '{groom} & {bride} — Wedding Invitation',
   },
 };

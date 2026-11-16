@@ -3,9 +3,9 @@ import { wedding } from './config.js';
 import { fill } from './utils.js';
 import Opening from './components/Opening.jsx';
 import Hero from './components/Hero.jsx';
-import { Invitation, Person, SaveTheDate, Venue, Contact, Closing } from './components/Sections.jsx';
+import { Invitation, Person, SaveTheDate, Venue, Contact, Closing, Monogram } from './components/Sections.jsx';
 import Countdown from './components/Countdown.jsx';
-import ScratchCard from './components/ScratchCard.jsx';
+import Wishes from './components/Wishes.jsx';
 import Celebrate from './components/Celebrate.jsx';
 import Compliments from './components/Compliments.jsx';
 import MusicToggle from './components/MusicToggle.jsx';
@@ -18,6 +18,15 @@ export default function App() {
 
   useEffect(() => {
     document.title = fill(wedding.meta.title);
+    const kit = wedding.fonts?.adobeFontsKit;
+    if (kit && !document.getElementById('adobe-fonts')) {
+      const l = document.createElement('link');
+      l.id = 'adobe-fonts'; l.rel = 'stylesheet';
+      l.href = `https://use.typekit.net/${encodeURIComponent(kit)}.css`;
+      document.head.appendChild(l);
+      // the couple's names on the first page switch to Bickham Script Pro 3 from that project
+      document.documentElement.style.setProperty('--hero-names-font', "'bickham-script-pro-3'");
+    }
     if (assets.background) {
       document.documentElement.style.setProperty('--desk-bg', `url('${assets.background}')`);
       document.documentElement.style.setProperty('--desk-bg-size', 'cover');
@@ -69,16 +78,17 @@ export default function App() {
         <main className="story">
           <Hero />
           <Invitation />
-          <Person who="bride" />
           <Person who="groom" />
+          <Person who="bride" />
           <SaveTheDate />
-          {wedding.events.map((ev, i) => <Venue key={i} ev={ev} mirrored={i % 2 === 1} />)}
+          {wedding.events.filter((ev) => ev.showPage !== false).map((ev, i) => <Venue key={i} ev={ev} mirrored={i % 2 === 1} />)}
           <Countdown />
-          <ScratchCard />
+          <Wishes />
           <Celebrate />
           <Compliments />
           <Contact />
           <Closing />
+          <Monogram />
         </main>
       )}
     </div>

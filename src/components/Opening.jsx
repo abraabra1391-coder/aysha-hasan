@@ -75,9 +75,9 @@ export default function Opening({ onOpen, onReveal, onDone }) {
         <div className="veil" />
         <div className="ar-welcome">{arabic.salaam}</div>
         <div className="ar-names">
-          <p className="ar-name">{bride.arabicName}</p>
-          <div className="ar-divider"><i /></div>
           <p className="ar-name">{groom.arabicName}</p>
+          <div className="ar-divider"><i /></div>
+          <p className="ar-name">{bride.arabicName}</p>
         </div>
         <div className="open-cta-wrap">
           <button className="open-cta" type="button" onClick={open}>{text.openButton}</button>

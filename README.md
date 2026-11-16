@@ -42,3 +42,14 @@ src/
 
 ## Building for hosting later
 `npm run build` writes a hostable site to `dist/`. `npm run build:single` writes one self-contained HTML file to `dist-single/`.
+
+## Wishes Wall: connect your Google Sheet (about 5 minutes)
+Until this is done the Wishes Wall runs in demo mode (wishes stay in the guest's own browser).
+1. Create a new Google Sheet (e.g. "Aysha & Hasan Wishes").
+2. In the sheet: **Extensions → Apps Script**. Delete what's there and paste in `google-apps-script/wishes.gs`.
+3. The Owner View PIN is set on the `OWNER_PIN` line (currently `123456`). Click **Save**.
+4. **Deploy → New deployment** → type **Web app**. Execute as: **Me**. Who has access: **Anyone**. Click **Deploy** and allow access.
+5. Copy the **Web app URL** (ends in `/exec`) into `wishes.endpoint` in `src/config.js`.
+
+Every wish appears as a new row in the sheet. On the website, tap **🔒 Owner View** and enter your PIN to read them.
+If you edit the script later, use **Deploy → Manage deployments → Edit → New version** so the URL stays the same.

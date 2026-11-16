@@ -132,13 +132,26 @@ export function Closing() {
       <Reveal>
         <p className="closing-dua" lang="ar" dir="rtl">{arabic.closingDua}</p>
         <Divider dark />
-        <h2 className="name" style={{ fontSize: 52 }}>{bride.name}</h2>
-        <p className="sub" style={{ fontSize: 22, margin: '2px 0' }}>&amp;</p>
         <h2 className="name" style={{ fontSize: 52 }}>{groom.name}</h2>
+        <p className="sub" style={{ fontSize: 22, margin: '2px 0' }}>&amp;</p>
+        <h2 className="name" style={{ fontSize: 52 }}>{bride.name}</h2>
         <Divider dark />
         <p className="sub" style={{ marginBottom: 4 }}>{d.full}</p>
         <p className="sub">{event.timeLabel}</p>
         <Typewriter className="body-copy on-dark closing-tagline" text={text.tagline} />
+      </Reveal>
+    </section>
+  );
+}
+
+/** Final section: the couple's monogram from the save-the-date card, letters only. */
+export function Monogram() {
+  const { assets, bride, groom } = wedding;
+  if (!assets.monogram) return null;
+  return (
+    <section className="page monogram-page">
+      <Reveal>
+        <img className="monogram-art" src={assets.monogram} alt={`${bride.name} and ${groom.name} monogram`} draggable="false" />
       </Reveal>
     </section>
   );

@@ -4,9 +4,21 @@ import { dateParts } from '../utils.js';
 import { Scene } from './Scene.jsx';
 import { ButterflySvg } from './Ornaments.jsx';
 
+/** A name as card lettering (image) when set, otherwise as typed text. */
+function NameLine({ name, art, who }) {
+  if (!art) return <p className="hp-name">{name}</p>;
+  return (
+    <p className={`hp-name hp-name-art ${who}`}>
+      <img src={art} alt={name} draggable="false" />
+    </p>
+  );
+}
+
 function HeroArt() {
   const { bride, groom, arabic, text, events, event, assets } = wedding;
-  const first = events[0];
+  const first = events[wedding.hero?.venueEvent ?? 0];
+  const also = wedding.hero?.alsoEvent != null ? events[wedding.hero.alsoEvent] : null;
+  const ad = also ? dateParts(also.date) : null;
   const d = dateParts();
   const onImage = Boolean(assets.heroBackground);
   const panel = (
@@ -14,9 +26,9 @@ function HeroArt() {
       <div className="hp-medallion" />
       <p className="hp-welcome">{arabic.welcome}</p>
       <p className="hp-lead">{text.heroLead}</p>
-      <p className="hp-name">{bride.name}</p>
+      <NameLine name={groom.name} art={assets.groomNameArt} who="groom" />
       <p className="hp-amp">&amp;</p>
-      <p className="hp-name">{groom.name}</p>
+      <NameLine name={bride.name} art={assets.brideNameArt} who="bride" />
       <div className="hp-rule"><i /></div>
       <p className="hp-day">{d.day}</p>
       <p className="hp-month">{d.month} {d.year}</p>
@@ -24,6 +36,14 @@ function HeroArt() {
       <div className="hp-rule"><i /></div>
       <p className="hp-venue">{first.placeLines.join(' ')}</p>
       <p className="hp-address">{first.address}</p>
+      {also && (
+        <>
+          <div className="hp-rule"><i /></div>
+          <p className="hp-time">{also.title} · {ad.day} {ad.month}</p>
+          <p className="hp-venue">{also.placeLines.join(' ')}</p>
+          <p className="hp-address">{also.address}</p>
+        </>
+      )}
       <div className="hp-rule"><i /></div>
       <p className="hp-tagline">{text.tagline}</p>
     </div>
@@ -54,7 +74,7 @@ export default function Hero() {
   return (
     <section ref={ref} className="page hero">
       {assets.hero ? (
-        <img className="hero-img" src={assets.hero} alt={`Wedding invitation of ${bride.name} and ${groom.name}`} />
+        <img className="hero-img" src={assets.hero} alt={`Wedding invitation of ${groom.name} and ${bride.name}`} />
       ) : (
         <HeroArt />
       )}

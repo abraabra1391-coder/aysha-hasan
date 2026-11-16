@@ -79,7 +79,7 @@ export default function Celebrate() {
       </Reveal>
       {assets.couplePhoto && (
         <figure className="couple-frame" hidden={!photoOk}>
-          <img src={assets.couplePhoto} alt={`${bride.name} and ${groom.name}`} decoding="async" onLoad={() => setPhotoOk(true)} />
+          <img src={assets.couplePhoto} alt={`${groom.name} and ${bride.name}`} decoding="async" onLoad={() => setPhotoOk(true)} />
         </figure>
       )}
       <div className="balloon-field" ref={fieldRef}>
