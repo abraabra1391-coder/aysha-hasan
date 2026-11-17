@@ -8,6 +8,7 @@ import heroBackground from './assets/hero-background.jpg';
 import groomNameArt from './assets/names/hasan.png';
 import brideNameArt from './assets/names/roomi-aysha.png';
 import monogram from './assets/names/monogram.png';
+import song from './assets/song.m4a';
 
 export const wedding = {
   /* ---------- the couple ---------- */
@@ -152,7 +153,8 @@ export const wedding = {
     background,      // backdrop for bride / groom / venue pages + desktop backdrop
     backgroundTone: 'dark', // 'dark' = light text on it, 'light' = dark text on it
     butterfly: '',   // transparent PNG
-    song: '',        // background music (mp3)
+    song,            // background music: Fragrance of Iman (Wedding Nasheed) – Muhammad Al Muqit
+    songVolume: 0.3, // 0 = silent, 1 = full volume
     couplePhoto: '', // optional photo on the "Celebrate With Us" page
   },
 
